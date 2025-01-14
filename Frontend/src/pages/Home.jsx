@@ -27,6 +27,16 @@ const Home = () => {
     
   };
 
+
+  // const loadData=()=>{
+  //   let api= "http://localhost:8000/employer/datadisplay";
+  //   axios.get(api).then((res)=>{
+  //     setData(res.data);
+  //     console.log(res.data);
+      
+  //   })
+  // }
+
   useEffect(() => {
     loadData();
   }, []);
@@ -75,5 +85,7 @@ const Home = () => {
   
   );
 };
+
+
 
 export default Home;

@@ -8,7 +8,7 @@ const cartSlice = createSlice({
   },
   reducers: {
     addtocart: (state, action) => {
-      const existingItem = state.cart.find(item => item.id === action.payload.id);
+      const existingItem = state.cart.find(item => item._id === action.payload._id);
       if (existingItem) {
         existingItem.qnty += 1;
         message.info("Item quantity increased.");
@@ -19,7 +19,7 @@ const cartSlice = createSlice({
     },
 
     qntyIncrement: (state, action) => {
-      const item = state.cart.find(item => item.id === action.payload.id);
+      const item = state.cart.find(item => item._id === action.payload._id);
       if (item) {
         item.qnty += 1;
       } else {
@@ -28,7 +28,7 @@ const cartSlice = createSlice({
     },
 
     qntyDecrement: (state, action) => {
-      const item = state.cart.find(item => item.id === action.payload.id);
+      const item = state.cart.find(item => item._id === action.payload._id);
       if (item) {
         if (item.qnty <= 1) {
           message.warning("Quantity cannot be less than one.");
@@ -41,7 +41,7 @@ const cartSlice = createSlice({
     },
 
     itemRemove: (state, action) => {
-      const itemIndex = state.cart.findIndex(item => item.id === action.payload.id);
+      const itemIndex = state.cart.findIndex(item => item._id === action.payload._id);
       if (itemIndex !== -1) {
         state.cart.splice(itemIndex, 1);
         message.success("Item removed from cart.");

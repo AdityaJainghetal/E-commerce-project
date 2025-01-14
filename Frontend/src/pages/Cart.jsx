@@ -62,24 +62,24 @@ const MyCart=()=>{
               <tr>
                 <td> <img src={key.image} width="100px" height="100px" /></td>
                 <td>{key.name}</td>
-                <td>{key.desc}</td>
-                <td>{key.cate}</td>
+                <td>{key.description}</td>
+                <td>{key.category}</td>
                 <td>{key.price}</td>
                 <td> 
                   
-                <FaMinusCircle onClick={()=>{dispatch(qntyDecrement({id:key.id}))}} />
+                <FaMinusCircle onClick={()=>{dispatch(qntyDecrement({_id:key._id}))}} />
 
 
 
                   {key.qnty} 
-                  <FaPlusCircle onClick={()=>{dispatch(qntyIncrement({id:key.id}))}} />
+                  <FaPlusCircle onClick={()=>{dispatch(qntyIncrement({_id:key._id}))}} />
                   
                   
                   </td>
                 <td> {key.price * key.qnty} </td>
                 <td> 
 
-                  <button onClick={()=>{dispatch(itemRemove({id:key.id}))}}> Remove</button>
+                  <button onClick={()=>{dispatch(itemRemove({_id:key._id}))}}> Remove</button>
                 </td>
               </tr>
             </>
@@ -124,7 +124,7 @@ const MyCart=()=>{
      <center>
 
      <button onClick={()=>{navigate("/checkout")}}>CheckOut</button> 
-     <button onClick={()=>handlePay()}>checkout</button>
+     {/* <button onClick={()=>handlePay()}>checkout</button> */}
      </center>
         
         </>

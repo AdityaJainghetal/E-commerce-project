@@ -5,6 +5,7 @@ import axios from "axios";
 const CheckOut = () => {
     const [input, setInput] = useState({});
     const [qrCode, setQrCode] = useState(null);
+    const [loader,setLoader]=useState(false)
     const cartData = useSelector((state) => state.cart);
     let totalAmount = 0;
     let productDetails = "";
@@ -19,12 +20,16 @@ const CheckOut = () => {
     };
 
     const handlePay = async () => {
+        setLoader(true)
         try {
             const orderURL = "http://localhost:8000/api/payment/orders";
             const { data } = await axios.post(orderURL, { amount: totalAmount, productitems: productDetails, ...input });
+            setLoader(false)
             initPay(data.data);
         } catch (error) {
             console.log(error);
+            setLoader(false)
+
         }
     };
 
@@ -98,7 +103,7 @@ const CheckOut = () => {
                                     <td><h1>{totalAmount}</h1></td>
                                 </tr>
                                 <tr>
-                                    <td><button onClick={handlePay}>Pay Now!</button></td>
+                                    <td><button onClick={handlePay}>{ loader ? "Loading..." : "Pay Now!"}</button></td>
                                     <td><button onClick={generateQRCode}>Generate QR Code</button></td>
                                 </tr>
                             </tbody>
